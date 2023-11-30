@@ -10,5 +10,7 @@ repos:
     rev: v0.1.6
     hooks:
       - id: ruff-format
+        files: '^hooks'
       - id: ruff
         args: ['--exit-non-zero-on-fix']
+        files: '^hooks'

@@ -9,7 +9,7 @@ VALID_PATTERN = r"^(?:[\w\-]|[\w\-\.][\w\-]|[\w\-\.]{3,100})$"
 PROJECT_SLUG = "{{ cookiecutter.project_slug }}"
 
 
-def main() -> 1:
+def main() -> int:
     if not re.match(VALID_PATTERN, PROJECT_SLUG):
         print(f'ERROR: "{PROJECT_SLUG}" is not a valid project slug')
         return 1

@@ -1,11 +1,9 @@
-"""Post-generation hook
-
-Using `shutil` until Python 3.12 brings `Path.walk`.
-"""
+"""Post-generation hook"""
 import shutil
 import subprocess
 import sys
 from pathlib import Path
+
 
 PROJECT_SLUG = "{{ cookiecutter.project_slug }}"
 PROJECT_TYPE = "{{ cookiecutter.project_type }}"

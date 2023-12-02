@@ -4,7 +4,7 @@ A barebones [cookiecutter](https://www.cookiecutter.io/) template for Python pro
 
   - environment management with [direnv](https://direnv.net/)
   - automatic linting/formatting with [pre-commit](https://pre-commit.com/)
-  - minimal `README.md`, `pyproject.toml`, and license file
+  - minimal `pyproject.toml` configuration
   - support for _src-layout_ and _single-module_ Python distributables,
     as well as collections of miscellaneous scripts
 

@@ -21,7 +21,7 @@ def cleanup_tree() -> None:
             (src_dir / PROJECT_SLUG / "__init__.py").replace(PROJECT_SLUG + ".py")
             shutil.rmtree(src_dir)
 
-        case "misc":
+        case "bare":
             Path("pyproject.toml").unlink()
             shutil.rmtree(src_dir)
 

@@ -6,7 +6,7 @@ A barebones [cookiecutter](https://www.cookiecutter.io/) template for Python pro
   - automatic linting/formatting with [pre-commit](https://pre-commit.com/)
   - minimal `pyproject.toml` configuration
   - support for _src-layout_ and _single-module_ Python distributables,
-    as well as collections of miscellaneous scripts
+    as well as a bare repository
 
 Not all projects require type checking, tests, Sphinx documentation,
 or default CI pipelines.

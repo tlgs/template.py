@@ -1,4 +1,4 @@
 {
     "project_slug": "?",
-    "project_type": ["package", "single-module", "misc"]
+    "project_type": ["package", "single-module", "bare"]
 }

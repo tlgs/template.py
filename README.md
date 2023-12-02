@@ -1,6 +1,6 @@
 # template.py
 
-A barebones [cookiecutter](https://github.com/cookiecutter/cookiecutter) template for Python projects.
+A barebones [cookiecutter](https://www.cookiecutter.io/) template for Python projects.
 
   - environment management with [direnv](https://direnv.net/)
   - automatic linting/formatting with [pre-commit](https://pre-commit.com/)

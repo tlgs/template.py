@@ -14,6 +14,9 @@ def cleanup_tree() -> None:
     src_dir = Path("src")
 
     match PROJECT_TYPE:
+        case "package":
+            pass
+
         case "single-module":
             (src_dir / PROJECT_SLUG / "__init__.py").replace(PROJECT_SLUG + ".py")
             shutil.rmtree(src_dir)
@@ -21,7 +24,9 @@ def cleanup_tree() -> None:
         case "misc":
             Path("pyproject.toml").unlink()
             shutil.rmtree(src_dir)
-            src_dir.mkdir()
+
+        case _:
+            raise ValueError(f"Invalid {PROJECT_TYPE=}")
 
     return None
 

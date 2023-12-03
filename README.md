@@ -1,5 +1,7 @@
 # template.py
 
+Usage: `cookiecutter https://github.com/tlgs/template.py`
+
 A barebones [cookiecutter](https://www.cookiecutter.io/) template for Python projects.
 
   - environment management with [direnv](https://direnv.net/)

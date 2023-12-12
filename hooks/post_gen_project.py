@@ -33,8 +33,11 @@ def cleanup_tree() -> None:
 
 def main() -> int:
     cleanup_tree()
-    subprocess.run(["git", "init"])
-    subprocess.run(["git", "add", "."])
+
+    subprocess.run(("git", "init"))
+    subprocess.run(("git", "add", "."))
+
+    subprocess.run(("direnv", "allow"))
 
     return 0
 

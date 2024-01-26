@@ -39,8 +39,6 @@ def main() -> int:
 
     subprocess.run(("direnv", "allow"))
 
-    subprocess.run(("pip", "install", "--upgrade", "pip"))
-
     return 0
 
 

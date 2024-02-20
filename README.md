@@ -15,7 +15,7 @@ or default CI pipelines.
 ## Usage
 
 ```
-cookiecutter https://github.com/tlgs/template.py
+cookiecutter gh:tlgs/template.py
 ```
 
 ## References

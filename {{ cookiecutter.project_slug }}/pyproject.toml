@@ -5,6 +5,10 @@ version = "0.1.0"
 [project.optional-dependencies]
 dev = ["pre-commit"]
 
+[tool.ruff.lint]
+select = ["F", "E", "W", "I", "N", "UP", "B"]
+ignore = ["E501"]
+
 [build-system]
 requires = ["setuptools"]
 build-backend = "setuptools.build_meta"

@@ -36,10 +36,12 @@ def main() -> int:
     cleanup_tree()
 
     subprocess.run(("git", "init"))
-    subprocess.run(("git", "add", "."))
 
     subprocess.run(("direnv", "exec", ".", "pip", "install", "pre-commit"))
     subprocess.run(("direnv", "exec", ".", "pre-commit", "install"))
+    subprocess.run(("direnv", "exec", ".", "pre-commit", "autoupdate"))
+
+    subprocess.run(("git", "add", "."))
 
     return 0
 

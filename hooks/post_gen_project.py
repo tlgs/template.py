@@ -37,6 +37,10 @@ def main() -> int:
 
     subprocess.run(("git", "init"))
 
+    subprocess.run(
+        ("direnv", "exec", ".", "python", "-c", "import sys; print(sys.executable)")
+    )
+
     subprocess.run(("direnv", "exec", ".", "pip", "install", "pre-commit"))
     subprocess.run(("direnv", "exec", ".", "pre-commit", "install"))
     subprocess.run(("direnv", "exec", ".", "pre-commit", "autoupdate"))

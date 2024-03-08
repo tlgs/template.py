@@ -1,4 +1,5 @@
 """Post-generation hook"""
+
 import shutil
 import subprocess
 import sys
@@ -37,9 +38,8 @@ def main() -> int:
     subprocess.run(("git", "init"))
     subprocess.run(("git", "add", "."))
 
-    subprocess.run(("direnv", "allow"))
-
-    subprocess.run(("pre-commit", "install"))
+    subprocess.run(("direnv", "exec", ".", "pip", "install", "pre-commit"))
+    subprocess.run(("direnv", "exec", ".", "pre-commit", "install"))
 
     return 0
 

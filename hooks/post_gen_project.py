@@ -2,6 +2,7 @@
 
 import shutil
 import sys
+import tomllib
 from pathlib import Path
 from subprocess import Popen, PIPE, STDOUT
 
@@ -10,8 +11,25 @@ PROJECT_SLUG = "{{ cookiecutter.project_slug }}"
 PROJECT_TYPE = "{{ cookiecutter.project_type }}"
 
 
+def generate_ruff_toml() -> None:
+    """Inspect pyproject.toml and generate corresponding .ruff.toml file (very flaky)."""
+    with open("pyproject.toml", "rb") as f:
+        data = tomllib.load(f)
+
+    table = data["tool"]["ruff"]["lint"]
+
+    contents = f"""\
+[lint]
+select = {str(table["select"]).replace("'", '"')}
+ignore = {str(table["ignore"]).replace("'", '"')}
+"""
+
+    with open(".ruff.toml", "w") as f:
+        f.write(contents)
+
+
 def cleanup_tree() -> None:
-    """Re-shape project structure based on type."""
+    """Re-shape project structure based on project type."""
     src_dir = Path("src")
 
     match PROJECT_TYPE:
@@ -23,6 +41,7 @@ def cleanup_tree() -> None:
             shutil.rmtree(src_dir)
 
         case "bare":
+            generate_ruff_toml()
             Path("pyproject.toml").unlink()
             shutil.rmtree(src_dir)
 

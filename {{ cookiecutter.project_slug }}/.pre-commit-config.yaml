@@ -3,9 +3,7 @@ repos:
     rev: v0.1.0
     hooks:
       - id: check-added-large-files
-      {% if cookiecutter.project_type != 'bare' -%}
       - id: check-toml
-      {% endif -%}
       - id: end-of-file-fixer
       - id: trailing-whitespace
 

@@ -51,7 +51,7 @@ def cleanup_tree() -> None:
     return None
 
 
-def run(*args, direnv=False):
+def run(*args: str, direnv: bool = False) -> None:
     """Wrapper around subprocess.Popen to inject arguments and process output."""
     if direnv:
         args = ("direnv", "exec", ".", *args)
@@ -60,6 +60,7 @@ def run(*args, direnv=False):
     print("\n$ ", " ".join(quoted_args), sep="")
 
     with Popen(args, stdout=PIPE, stderr=STDOUT) as proc:
+        assert proc.stdout is not None
         for line in proc.stdout:
             print("  ", line.decode(), sep="", end="")
 

@@ -8,10 +8,17 @@ repos:
       - id: trailing-whitespace
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.3.0
+    rev: v0.3.2
     hooks:
       - id: ruff
         args: [--fix, --exit-non-zero-on-fix]
         files: ^hooks
       - id: ruff-format
+        files: ^hooks
+
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.9.0
+    hooks:
+      - id: mypy
+        args: [--strict, --ignore-missing-imports]
         files: ^hooks

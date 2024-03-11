@@ -1,4 +1,5 @@
 """Pre-generation hook"""
+
 import re
 import sys
 
@@ -10,6 +11,8 @@ PROJECT_SLUG = "{{ cookiecutter.project_slug }}"
 
 
 def main() -> int:
+    print("\n----- PRE  GEN HOOK -----")
+
     if not re.match(VALID_PATTERN, PROJECT_SLUG):
         print(f'ERROR: "{PROJECT_SLUG}" is not a valid project slug')
         return 1

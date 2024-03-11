@@ -1,9 +1,9 @@
 """Post-generation hook"""
 
 import shutil
-import subprocess
 import sys
 from pathlib import Path
+from subprocess import Popen, PIPE, STDOUT
 
 
 PROJECT_SLUG = "{{ cookiecutter.project_slug }}"
@@ -32,20 +32,30 @@ def cleanup_tree() -> None:
     return None
 
 
+def run(*args, direnv=False):
+    """Wrapper around subprocess.Popen to inject arguments and process output."""
+    if direnv:
+        args = ("direnv", "exec", ".", *args)
+
+    quoted_args = [f"'{arg}'" if " " in arg else arg for arg in args]
+    print("\n$ ", " ".join(quoted_args), sep="")
+
+    with Popen(args, stdout=PIPE, stderr=STDOUT) as proc:
+        for line in proc.stdout:
+            print("  ", line.decode(), sep="", end="")
+
+
 def main() -> int:
+    print("----- POST GEN HOOK -----")
+
     cleanup_tree()
 
-    subprocess.run(("git", "init"))
-
-    subprocess.run(
-        ("direnv", "exec", ".", "python", "-c", "import sys; print(sys.executable)")
-    )
-
-    subprocess.run(("direnv", "exec", ".", "pip", "install", "pre-commit"))
-    subprocess.run(("direnv", "exec", ".", "pre-commit", "install"))
-    subprocess.run(("direnv", "exec", ".", "pre-commit", "autoupdate"))
-
-    subprocess.run(("git", "add", "."))
+    run("git", "init")
+    run("python", "-c", "import sys; print(sys.executable)", direnv=True)
+    run("pip", "install", "pre-commit", direnv=True)
+    run("pre-commit", "install", direnv=True)
+    run("pre-commit", "autoupdate", direnv=True)
+    run("git", "add", ".")
 
     return 0
 

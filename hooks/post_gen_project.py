@@ -71,6 +71,7 @@ def main() -> int:
     cleanup_tree()
 
     run("git", "init")
+    run("direnv", "allow")
     run("python", "-c", "import sys; print(sys.executable)", direnv=True)
     run("pip", "install", "pre-commit", direnv=True)
     run("pre-commit", "install", direnv=True)

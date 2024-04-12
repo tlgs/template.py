@@ -10,7 +10,7 @@ VALID_PATTERN = r"^(?:[\w\-]|[\w\-\.][\w\-]|[\w\-\.]{3,100})$"
 PROJECT_SLUG = "{{ cookiecutter.project_slug }}"
 
 
-def main() -> int:
+def main():
     print("\n----- PRE  GEN HOOK -----")
 
     if not re.match(VALID_PATTERN, PROJECT_SLUG):

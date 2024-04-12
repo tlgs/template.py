@@ -11,7 +11,7 @@ PROJECT_SLUG = "{{ cookiecutter.project_slug }}"
 PROJECT_TYPE = "{{ cookiecutter.project_type }}"
 
 
-def generate_ruff_toml() -> None:
+def generate_ruff_toml():
     """Inspect pyproject.toml and generate corresponding .ruff.toml file (very flaky)."""
     with open("pyproject.toml", "rb") as f:
         data = tomllib.load(f)
@@ -28,7 +28,7 @@ ignore = {str(table["ignore"]).replace("'", '"')}
         f.write(contents)
 
 
-def cleanup_tree() -> None:
+def cleanup_tree():
     """Re-shape project structure based on project type."""
     src_dir = Path("src")
 
@@ -48,10 +48,8 @@ def cleanup_tree() -> None:
         case _:
             raise ValueError(f"Invalid {PROJECT_TYPE=}")
 
-    return None
 
-
-def run(*args: str, direnv: bool = False) -> None:
+def run(*args: str, direnv: bool = False):
     """Wrapper around subprocess.Popen to inject arguments and process output."""
     if direnv:
         args = ("direnv", "exec", ".", *args)
@@ -60,12 +58,11 @@ def run(*args: str, direnv: bool = False) -> None:
     print("\n$ ", " ".join(quoted_args), sep="")
 
     with Popen(args, stdout=PIPE, stderr=STDOUT) as proc:
-        assert proc.stdout is not None
         for line in proc.stdout:
             print("  ", line.decode(), sep="", end="")
 
 
-def main() -> int:
+def main():
     print("----- POST GEN HOOK -----")
 
     cleanup_tree()
